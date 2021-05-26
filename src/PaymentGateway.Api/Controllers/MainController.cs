@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using PaymentGateway.Dto;
+using PaymentGateway.Dto.Response;
 
 namespace PaymentGateway.Api.Controllers
 {
@@ -50,17 +51,17 @@ namespace PaymentGateway.Api.Controllers
         //     return CustomResponse();
         // }
 
-        protected bool HasErrors(ResponseResult response)
-        {
-            if (response == null || !response.Errors.Messages.Any()) return false;
-
-            foreach (var message in response.Errors.Messages)
-            {
-                AddProcessingError(message);
-            }
-
-            return true;
-        }
+        // protected bool HasErrors(ResponseResult response)
+        // {
+        //     if (response == null || !response.Errors.Messages.Any()) return false;
+        //
+        //     foreach (var message in response.Errors.Messages)
+        //     {
+        //         AddProcessingError(message);
+        //     }
+        //
+        //     return true;
+        // }
 
         protected bool IsOperationValid()
         {

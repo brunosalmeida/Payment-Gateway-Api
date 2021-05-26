@@ -1,6 +1,10 @@
 ﻿using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Paymentgateway.Application;
 using PaymentGateway.Dto.Request;
+using PaymentGateway.Dto.Response;
 
 namespace PaymentGateway.Api.Controllers
 {
@@ -8,14 +12,28 @@ namespace PaymentGateway.Api.Controllers
     [Route("v1/payment")]
     public class PaymentController : MainController
     {
-        [HttpPost]
-        public async Task<IActionResult> Payment(Payment payment)
+        private readonly IMediator _mediator;
+        private readonly ILogger<PaymentController> _logger;
+        public PaymentController(ILogger<PaymentController> logger, IMediator mediator)
         {
-            return Created("Payment created", payment);
+            _mediator = mediator;
+            _logger = logger;
+        }
+        
+        [HttpPost]
+        public async Task<IActionResult> AddPayment(Payment payment)
+        {
+            var command = new PaymentCommand(payment);
+            var result = await _mediator.Send(command);
+            
+            if(result.Status == PaymentStatus.Error) 
+                AddProcessingError("Payment not allowed.");
+            
+            return CustomResponse(result);
         }
 
         [HttpGet]
-        public async Task<IActionResult> Payment()
+        public async Task<IActionResult> GetPayment()
         {
             return NotFound();
         }
