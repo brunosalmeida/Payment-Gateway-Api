@@ -1,8 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Paymentgateway.Application.Commands;
+using Paymentgateway.Application.Queries;
 using PaymentGateway.Dto;
 using PaymentGateway.Dto.Request;
 using PaymentGateway.Dto.Response;
@@ -33,10 +35,13 @@ namespace PaymentGateway.Api.Controllers
             return CustomResponse(result);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetPayment()
+        [HttpGet("/{id}")]
+        public async Task<IActionResult> GetPayment(Guid id)
         {
-            return NotFound();
+            var query = new PaymentQuery(id);
+            var result = await _mediator.Send(query);
+            
+            return CustomResponse(result);
         }
     }
 }

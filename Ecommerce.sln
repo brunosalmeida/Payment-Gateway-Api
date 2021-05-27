@@ -20,7 +20,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Broker", "mock\Broker\Broke
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Broker.Tests", "mock\Broker.Tests\Broker.Tests.csproj", "{C8F2895A-C97D-4383-A3A4-1030BF0195A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paymentgateway.Application", "src\Paymentgateway.Application\Paymentgateway.Application.csproj", "{76997128-3086-4B0C-88EC-E952772A99D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGateway.Application", "src\PaymentGateway.Application\PaymentGateway.Application.csproj", "{76997128-3086-4B0C-88EC-E952772A99D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGateway.Api", "src\PaymentGateway.Api\PaymentGateway.Api.csproj", "{7DEFDBC5-B195-45A8-8D0D-D3D3337AF46F}"
 EndProject
