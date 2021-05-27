@@ -9,8 +9,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
 using Paymentgateway.Application.Commands;
+using PaymentGateway.Data.Repositories;
 using PaymentGateway.Domain.Interfaces;
-using PaymentGeteway.Data;
 
 namespace PaymentGateway.Api
 {

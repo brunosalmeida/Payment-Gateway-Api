@@ -7,7 +7,7 @@ namespace PaymentGateway.Domain.Models
     {
         public decimal Amount { get; }
         public CreditCard CreditCard { get; }
-
+        
         public Status Status { get; private set; }
 
         public Payment(decimal amount, CreditCard creditCard)
@@ -17,18 +17,17 @@ namespace PaymentGateway.Domain.Models
             CreditCard = creditCard;
         }
 
-        public Payment(Guid id, decimal amount, string name, string number, int month, int year, int cvv, Status status,
-            DateTime createdDate)
+        public Payment(Guid id, decimal amount, CreditCard creditCard, Status status, DateTime createdDate)
             : base(id, createdDate)
         {
             Amount = amount;
-            CreditCard = new CreditCard(name, number, month, year, cvv);
+            CreditCard = creditCard;
             Status = status;
         }
 
         public void SuccessPayment()
         {
-            Status = Status.Success;
+           Status = Status.Success;
         }
 
         public void ErrorPayment()

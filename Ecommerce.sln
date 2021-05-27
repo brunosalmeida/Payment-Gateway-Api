@@ -34,7 +34,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGateway.Interfaces",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGateway.Domain", "src\PaymentGateway.Domain\PaymentGateway.Domain.csproj", "{E0D05BB8-B5F6-4BD4-8E63-994301166280}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGeteway.Data", "src\PaymentGeteway.Data\PaymentGeteway.Data.csproj", "{C384F8F5-FDC2-467D-B55A-F670B6125417}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGateway.Data", "src\PaymentGateway.Data\PaymentGateway.Data.csproj", "{C384F8F5-FDC2-467D-B55A-F670B6125417}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGateway.Domain.Test", "tests\PaymentGateway.Domain.Test\PaymentGateway.Domain.Test.csproj", "{EC139CB9-7D05-45EE-A31B-D31F57D0C1B8}"
 EndProject

@@ -4,11 +4,12 @@ using System.Data.SqlClient;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
-using PaymentGateway.Domain.Models;
 using Microsoft.Extensions.Configuration;
 using PaymentGateway.Domain.Interfaces;
+using PaymentGateway.Domain.Models;
+using PaymentGateway.Data.EntityExtensions;
 
-namespace PaymentGeteway.Data
+namespace PaymentGateway.Data.Repositories
 {
     public class PaymentRepository : IPaymentRepository
     {
@@ -33,7 +34,8 @@ namespace PaymentGeteway.Data
             await using var connection = new SqlConnection(_configuration.GetConnectionString(_database));
             connection.Open();
 
-            return await connection.QueryFirstAsync<Payment>(sql, parameters);
+            var payment = await connection.QueryFirstAsync<PaymentGateway.Data.Entity.Payment>(sql, parameters);
+            return payment.ToDomain();
         }
 
         public async Task Insert(Payment payment)
