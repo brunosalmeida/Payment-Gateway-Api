@@ -2,7 +2,11 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-        <RootNamespace>PaymentGateway.Model</RootNamespace>
+        <RootNamespace>PaymentGateway.Domain.Interfaces</RootNamespace>
     </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\PaymentGateway.Domain\PaymentGateway.Domain.csproj" />
+    </ItemGroup>
 
 </Project>

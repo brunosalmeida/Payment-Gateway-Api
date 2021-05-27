@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  sqlserver:
+    container_name: payment.sqlserver
+    image: microsoft/mssql-server-linux
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=DefaultPassword1
+      - MSSQL_PID=Developer
+    ports:
+      - "1433:1433"
+    networks:
+      - payment_network
+networks:
+  payment_network:
+    driver: bridge

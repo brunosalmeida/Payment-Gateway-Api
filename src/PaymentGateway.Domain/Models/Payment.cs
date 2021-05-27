@@ -1,36 +1,24 @@
 ﻿using System;
 
-namespace PaymentGateway.Model
+namespace PaymentGateway.Domain.Models
 {
     public class Payment : Base
     {
         public decimal Amount { get; }
-        public string Name { get; }
-        public string Number { get; }
-        public int Month { get; }
-        public int Year { get; }
-        public int CVV { get; }
+        public CreditCard CreditCard { get; set; }
 
-        public Payment(decimal amount, string name, string number, int month, int year, int cvv) 
+        public Payment(decimal amount, CreditCard creditCard) 
             : base()
         {
             Amount = amount;
-            Name = name;
-            Number = number;
-            Month = month;
-            Year = year;
-            CVV = cvv;
+            CreditCard = creditCard;
         }
         
-        public Payment(Guid id, decimal amount, string name, string number, int month, int year, int cvv, DateTime createdDate)
+        public Payment(Guid id, decimal amount, CreditCard creditCard, DateTime createdDate)
             : base(id, createdDate)
         {
             Amount = amount;
-            Name = name;
-            Number = number;
-            Month = month;
-            Year = year;
-            CVV = cvv;
+            CreditCard = creditCard;
         }
     }
 }

@@ -9,6 +9,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
 using Paymentgateway.Application;
+using PaymentGateway.Domain;
+using PaymentGateway.Domain.Interfaces;
+using PaymentGeteway.Data;
 
 namespace PaymentGateway.Api
 {
@@ -47,6 +50,9 @@ namespace PaymentGateway.Api
             
             services.AddMediatR(typeof(Startup));
             services.AddMediatR(typeof(PaymentCommand).GetTypeInfo().Assembly);
+            
+            services.AddTransient<IPaymentRepository, PaymentRepository>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

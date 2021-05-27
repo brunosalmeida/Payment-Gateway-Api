@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using PaymentGateway.Domain.Models;
 
-namespace PaymentGateway.Model
+namespace PaymentGateway.Domain.Interfaces.Base
 {
     public interface IInsert
     {

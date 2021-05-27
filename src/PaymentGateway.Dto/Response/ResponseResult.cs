@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PaymentGateway.Dto
+namespace PaymentGateway.Dto.Response
 {
     public class ResponseResult
     {
