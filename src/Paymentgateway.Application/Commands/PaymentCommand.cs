@@ -1,9 +1,8 @@
-﻿using System;
-using MediatR;
+﻿using MediatR;
 using PaymentGateway.Dto.Request;
 using PaymentGateway.Dto.Response;
 
-namespace Paymentgateway.Application
+namespace Paymentgateway.Application.Commands
 {
     public class PaymentCommand : IRequest<PaymentResult>
     {

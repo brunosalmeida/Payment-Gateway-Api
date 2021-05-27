@@ -24,7 +24,7 @@ namespace PaymentGeteway.Data
 
         public async Task<Payment> Get(Guid id)
         {
-            var sql = $"SELECT Id, Amount, Name, Number, Month, Year, CVV, CreatedDate " +
+            var sql = $"SELECT Id, Amount, Name, Number, Month, Year, CVV, Status, CreatedDate " +
                       $"FROM {_table} WITH (NOLOCK) WHERE ID = @id";
 
             var dictionary = new Dictionary<string, object> {{"@id", id}};
@@ -40,8 +40,8 @@ namespace PaymentGeteway.Data
         {
             var sql = new StringBuilder();
             sql.Append($"INSERT INTO {_table}");
-            sql.Append(" (Id, Amount, Name, Number, Month, Year, CVV, CreatedDate)");
-            sql.Append(" VALUES(@id, @amount, @name, @number, @month, @year, @cvv, @createdDate)");
+            sql.Append(" (Id, Amount, Name, Number, Month, Year, CVV, Status, CreatedDate)");
+            sql.Append(" VALUES(@id, @amount, @name, @number, @month, @year, @cvv, @status, @createdDate)");
 
             var dictionary = new Dictionary<string, object>
             {
@@ -52,6 +52,7 @@ namespace PaymentGeteway.Data
                 {"@month", payment.CreditCard.Month},
                 {"@year", payment.CreditCard.Year},
                 {"@cvv", payment.CreditCard.CVV},
+                {"@status", payment.Status},
                 {"@createdDate", payment.CreatedDate}
             };
 

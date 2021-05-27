@@ -2,7 +2,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Paymentgateway.Application;
+using Paymentgateway.Application.Commands;
+using PaymentGateway.Dto;
 using PaymentGateway.Dto.Request;
 using PaymentGateway.Dto.Response;
 

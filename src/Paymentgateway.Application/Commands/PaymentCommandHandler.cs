@@ -1,13 +1,12 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using PaymentGateway.Domain.Interfaces;
-using Domain = PaymentGateway.Domain.Models;
+using PaymentGateway.Dto;
 using PaymentGateway.Dto.Response;
-using CreditCard = PaymentGateway.Dto.Request.CreditCard;
+using Domain = PaymentGateway.Domain.Models;
 
-namespace Paymentgateway.Application
+namespace Paymentgateway.Application.Commands
 {
     public class PaymentCommandHandler : IRequestHandler<PaymentCommand, PaymentResult>
     {
@@ -24,6 +23,7 @@ namespace Paymentgateway.Application
                 command.Payment.CreditCard.Month, command.Payment.CreditCard.Year, command.Payment.CreditCard.CVV);
 
             var payment = new Domain.Payment(command.Payment.Amount, creditCard);
+            payment.SuccessPayment();
 
             await _repository.Insert(payment);
             
