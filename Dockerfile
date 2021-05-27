@@ -12,9 +12,8 @@ COPY ["src/PaymentGateway.Interfaces/PaymentGateway.Interfaces.csproj", "Payment
 COPY ["src/PaymentGateway.Data/PaymentGateway.Data.csproj", "PaymentGateway.Data/"]
 COPY ["src/PaymentGateway.Dto/PaymentGateway.Dto.csproj", "PaymentGateway.Dto/"]
 
-
-RUN dotnet restore "./PaymentGateway.Api/PaymentGateway.Api.csproj"
-COPY src/. /src/ 
+RUN dotnet restore "src/PaymentGateway.Api/PaymentGateway.Api.csproj"
+COPY . .
 WORKDIR "/src/PaymentGateway.Api"
 RUN dotnet build "PaymentGateway.Api.csproj" -c Release -o /app/build
 
