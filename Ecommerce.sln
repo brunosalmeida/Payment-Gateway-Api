@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0-Payment-Gateway", "0-Payment-Gateway", "{99767BDE-AFAE-40FE-BE1F-761259400A09}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Bank Broker", "1-Bank Broker", "{52AF75A0-65AD-4825-9986-74D2C030D268}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Acquiring Bank", "1-Acquiring Bank", "{52AF75A0-65AD-4825-9986-74D2C030D268}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0-Presentation", "0-Presentation", "{74DE44C0-5260-46CF-BD29-905FA68ED2DC}"
 EndProject
@@ -16,9 +16,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Infrastructure", "4-Infra
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5-Crosscutting", "5-Crosscutting", "{712BCDEF-87B9-4EC6-A263-78BAA143991A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Broker", "mock\Broker\Broker.csproj", "{1820F8A7-9F6C-4533-8DB1-0ED74E54BA90}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcquiringBank", "mock\AcquiringBank\AcquiringBank.csproj", "{1820F8A7-9F6C-4533-8DB1-0ED74E54BA90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Broker.Tests", "mock\Broker.Tests\Broker.Tests.csproj", "{C8F2895A-C97D-4383-A3A4-1030BF0195A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcquiringBank.Tests", "mock\AcquiringBank.Tests\AcquiringBank.Tests.csproj", "{C8F2895A-C97D-4383-A3A4-1030BF0195A6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGateway.Application", "src\PaymentGateway.Application\PaymentGateway.Application.csproj", "{76997128-3086-4B0C-88EC-E952772A99D0}"
 EndProject
