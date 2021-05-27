@@ -2,7 +2,7 @@
 
 namespace PaymentGateway.Dto.Response
 {
-    public class PayementQueryResult
+    public struct PayementQueryResult
     {
         public Guid Id { get; set; }
         public decimal Amount { get; set; }

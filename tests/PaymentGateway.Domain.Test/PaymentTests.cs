@@ -4,7 +4,7 @@ using Xunit;
 
 namespace PaymentGateway.Domain.Test
 {
-    public class PaymentDomain
+    public class PaymentTests
     {
         [Fact(DisplayName = "Create Success Payment Should Have Success Status")]
         public void CreateSuccessPaymentShouldHaveSuccessStatus()

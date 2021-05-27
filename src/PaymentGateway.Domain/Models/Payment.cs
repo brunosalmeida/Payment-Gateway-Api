@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.VisualBasic;
 
 
 namespace PaymentGateway.Domain.Models
@@ -7,7 +8,7 @@ namespace PaymentGateway.Domain.Models
     {
         public decimal Amount { get; }
         public CreditCard CreditCard { get; }
-        
+
         public Status Status { get; private set; }
 
         public Payment(decimal amount, CreditCard creditCard)
@@ -27,7 +28,7 @@ namespace PaymentGateway.Domain.Models
 
         public void SuccessPayment()
         {
-           Status = Status.Success;
+            Status = Status.Success;
         }
 
         public void ErrorPayment()

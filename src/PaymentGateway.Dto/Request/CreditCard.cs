@@ -1,6 +1,6 @@
 ﻿namespace PaymentGateway.Dto.Request
 {
-    public class CreditCard
+    public struct CreditCard
     {
         public string Name { get; set; }
         public string Number { get; set; }
