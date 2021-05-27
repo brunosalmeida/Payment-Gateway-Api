@@ -6,7 +6,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\PaymentGateway.Interfaces\PaymentGateway.Interfaces.csproj" />
-      <ProjectReference Include="..\src\PaymentGateway.Interfaces\PaymentGateway.Interfaces.csproj" />
     </ItemGroup>
 
     <ItemGroup>
