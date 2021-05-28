@@ -7,7 +7,6 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using PaymentGateway.Api.Controllers;
 using Paymentgateway.Application.Commands;
-using PaymentGateway.Dto;
 using PaymentGateway.Dto.Request;
 using PaymentGateway.Dto.Response;
 using Xunit;

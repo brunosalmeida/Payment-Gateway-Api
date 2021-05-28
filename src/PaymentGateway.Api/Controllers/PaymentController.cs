@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PaymentGateway.Api.Validadors;
 using Paymentgateway.Application.Commands;
 using Paymentgateway.Application.Queries;
 using PaymentGateway.Dto;
@@ -26,6 +27,14 @@ namespace PaymentGateway.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> AddPayment(Payment payment)
         {
+            var validator = new PaymentValidator();
+            var validationResult = await validator.ValidateAsync(payment, default);
+
+            if (!validationResult.IsValid)
+            {
+                return CustomResponse(validationResult = validationResult);
+            }
+            
             var command = new PaymentCommand(payment);
             var result = await _mediator.Send(command);
             
