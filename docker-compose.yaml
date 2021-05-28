@@ -4,6 +4,9 @@ services:
   sqlserver:
     container_name: payment.sqlserver
     image: microsoft/mssql-server-linux
+    build: 
+      context: ./container/sql
+      dockerfile: ./Dockerfile
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=DefaultPassword1
