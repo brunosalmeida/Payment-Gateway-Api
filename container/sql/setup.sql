@@ -22,7 +22,7 @@ CREATE TABLE [dbo].[Payments](
 	[Name] [nvarchar](50) NOT NULL,
 	[Month] [int] NOT NULL,
 	[Year] [int] NOT NULL,
-	[CVV] [int] NOT NULL,
+	[CVV] [varchar](3) NOT NULL,
 	[Status] [int] NOT NULL,
 	[CreatedDate] [datetime] NOT NULL
 ) ON [PRIMARY]

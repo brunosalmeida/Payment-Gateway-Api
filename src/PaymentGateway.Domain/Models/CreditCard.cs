@@ -8,9 +8,9 @@ namespace PaymentGateway.Domain.Models
         public string Number { get; private set; }
         public int Month { get; }
         public int Year { get; }
-        public int CVV { get; }
+        public string CVV { get; }
 
-        public CreditCard(string name, string number, int month, int year, int cvv)
+        public CreditCard(string name, string number, int month, int year, string cvv)
         {
             Name = name;
             Number = number;

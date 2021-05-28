@@ -10,7 +10,7 @@ namespace PaymentGateway.Dto.Response
         public string Number { get; set; }
         public int Month { get; set; }
         public int Year { get; set; }
-        public int CVV { get; set; }
+        public string CVV { get; set; }
         public PaymentStatus Status { get; set; }
         public DateTime CreatedDate { get; set; }
     }

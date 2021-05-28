@@ -40,7 +40,7 @@ namespace PaymentGateway.Api.Test
                     Number = "4088043836019395",
                     Month = 8,
                     Year = 2030,
-                    CVV = 159
+                    CVV = "159"
                 }
             };
 
@@ -73,7 +73,7 @@ namespace PaymentGateway.Api.Test
                     Number = "4088043836019395",
                     Month = 8,
                     Year = 2030,
-                    CVV = 159
+                    CVV = "159"
                 }
             };
 

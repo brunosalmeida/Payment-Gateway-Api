@@ -10,11 +10,11 @@ namespace PaymentGateway.Data.Entity
         public string Number { get; set; }
         public int Month { get; set; }
         public int Year { get; set; }
-        public int CVV { get; set; }
+        public string CVV { get; set; }
         public PaymentStatus Status { get; set; }
         public DateTime CreatedDate { get; set; }
 
-        public Payment(Guid id, decimal amount, string name, string number, int month, int year, int cvv,
+        public Payment(Guid id, decimal amount, string name, string number, int month, int year, string cvv,
             PaymentStatus status, DateTime createdDate)
         {
             Id = id;
