@@ -34,7 +34,7 @@ namespace PaymentGateway.Data.Repositories
             await using var connection = new SqlConnection(_configuration.GetConnectionString(_database));
             connection.Open();
 
-            var payment = await connection.QueryFirstAsync<PaymentGateway.Data.Entity.Payment>(sql, parameters);
+            var payment = await connection.QueryFirstOrDefaultAsync<PaymentGateway.Data.Entity.Payment>(sql, parameters);
             return payment.ToDomain();
         }
 
@@ -63,7 +63,7 @@ namespace PaymentGateway.Data.Repositories
             await using var connection = new SqlConnection(_configuration.GetConnectionString(_database));
             connection.Open();
 
-            await connection.ExecuteScalarAsync(sql.ToString(), parameters);
+            await connection.ExecuteAsync(sql.ToString(), parameters);
             await Task.CompletedTask;
         }
     }

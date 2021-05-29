@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Paymentgateway.Application.Queries;
@@ -8,7 +9,7 @@ using PaymentGateway.Infrastructure;
 
 namespace PaymentGateway.Application.Queries
 {
-    public class PaymentQueryHandler : IRequestHandler<PaymentQuery, PayementQueryResult>
+    public class PaymentQueryHandler : IRequestHandler<PaymentQuery, PaymentQueryResult>
     {
         private readonly IPaymentRepositoryResiliencePolicy _repository;
 
@@ -17,11 +18,14 @@ namespace PaymentGateway.Application.Queries
             _repository = repository;
         }
 
-        public async Task<PayementQueryResult> Handle(PaymentQuery query, CancellationToken cancellationToken)
+        public async Task<PaymentQueryResult> Handle(PaymentQuery query, CancellationToken cancellationToken)
         {
             var payment = await _repository.Get(query.Id);
 
-            return new PayementQueryResult
+            if (payment is null)
+                return null;
+
+            return new PaymentQueryResult
             {
                 Id = payment.Id,
                 Amount = payment.Amount,
@@ -29,7 +33,7 @@ namespace PaymentGateway.Application.Queries
                 Number = payment.CreditCard.Number,
                 Month = payment.CreditCard.Month,
                 Year = payment.CreditCard.Year,
-                CVV = payment.CreditCard.CVV,
+                CVV = payment?.CreditCard.CVV,
                 Status = (PaymentStatus) payment.Status,
                 CreatedDate = payment.CreatedDate
             };

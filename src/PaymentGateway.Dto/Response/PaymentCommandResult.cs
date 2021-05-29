@@ -4,7 +4,7 @@ using Newtonsoft.Json.Converters;
 
 namespace PaymentGateway.Dto.Response
 {
-    public struct PaymentResult
+    public class PaymentResult
     {
         public Guid Id { get; set; }
         
