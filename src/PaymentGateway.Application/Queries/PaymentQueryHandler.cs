@@ -10,19 +10,16 @@ namespace PaymentGateway.Application.Queries
 {
     public class PaymentQueryHandler : IRequestHandler<PaymentQuery, PayementQueryResult>
     {
-        private readonly IPaymentRepository _repository;
-        private readonly IPaymentRepositoryResiliencePolicy _paymentRepositoryResiliencePolicy;
+        private readonly IPaymentRepositoryResiliencePolicy _repository;
 
-        public PaymentQueryHandler(IPaymentRepository repository,
-            IPaymentRepositoryResiliencePolicy paymentRepositoryResiliencePolicy)
+        public PaymentQueryHandler(IPaymentRepositoryResiliencePolicy repository)
         {
             _repository = repository;
-            _paymentRepositoryResiliencePolicy = paymentRepositoryResiliencePolicy;
         }
 
         public async Task<PayementQueryResult> Handle(PaymentQuery query, CancellationToken cancellationToken)
         {
-            var payment = await _paymentRepositoryResiliencePolicy.Get(query.Id);
+            var payment = await _repository.Get(query.Id);
 
             return new PayementQueryResult
             {
