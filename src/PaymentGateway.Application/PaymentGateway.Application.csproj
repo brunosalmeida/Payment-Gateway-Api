@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PaymentGateway.Dto\PaymentGateway.Dto.csproj" />
+    <ProjectReference Include="..\PaymentGateway.Infrastructure\PaymentGateway.Infrastructure.csproj" />
     <ProjectReference Include="..\PaymentGateway.Interfaces\PaymentGateway.Interfaces.csproj" />
   </ItemGroup>
 

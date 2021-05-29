@@ -17,7 +17,7 @@ namespace PaymentGateway.Data.Repositories
         private const string _database = "PaymentGatewayDatabase";
 
         private readonly IConfiguration _configuration;
-
+        
         public PaymentRepository(IConfiguration configuration)
         {
             _configuration = configuration;

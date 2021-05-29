@@ -150,7 +150,7 @@ namespace PaymentGateway.Api.Test
         [InlineData("1xx")]
         [InlineData("12x")]
         [InlineData("")]
-        public async Task AddNewPaymentWithInvalidCreditcardCVVNumberShouldReturnsInvalid(string cvv)
+        public async Task AddNewPaymentWithInvalidCreditcardCvvNumberShouldReturnsInvalid(string cvv)
         {
             var payment = new Payment
             {
@@ -167,7 +167,7 @@ namespace PaymentGateway.Api.Test
 
             var validator = new PaymentValidator();
             var validationResult = await validator.ValidateAsync(payment, default);
-         
+          
             Assert.False(validationResult.IsValid);
         }
     }

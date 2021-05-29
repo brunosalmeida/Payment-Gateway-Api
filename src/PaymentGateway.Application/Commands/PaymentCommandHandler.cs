@@ -4,6 +4,7 @@ using MediatR;
 using PaymentGateway.Domain.Interfaces;
 using PaymentGateway.Dto;
 using PaymentGateway.Dto.Response;
+using PaymentGateway.Infrastructure;
 using Domain = PaymentGateway.Domain.Models;
 
 namespace Paymentgateway.Application.Commands
@@ -11,10 +12,12 @@ namespace Paymentgateway.Application.Commands
     public class PaymentCommandHandler : IRequestHandler<PaymentCommand, PaymentResult>
     {
         private readonly IPaymentRepository _repository;
+        private readonly IPaymentRepositoryResiliencePolicy _paymentRepositoryResiliencePolicy;
 
-        public PaymentCommandHandler(IPaymentRepository repository)
+        public PaymentCommandHandler(IPaymentRepository repository, IPaymentRepositoryResiliencePolicy paymentRepositoryResiliencePolicy)
         {
             _repository = repository;
+            _paymentRepositoryResiliencePolicy = paymentRepositoryResiliencePolicy;
         }
 
         public async Task<PaymentResult> Handle(PaymentCommand command, CancellationToken cancellationToken)

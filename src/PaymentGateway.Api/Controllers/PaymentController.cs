@@ -6,7 +6,6 @@ using Microsoft.Extensions.Logging;
 using PaymentGateway.Api.Validadors;
 using Paymentgateway.Application.Commands;
 using Paymentgateway.Application.Queries;
-using PaymentGateway.Dto;
 using PaymentGateway.Dto.Request;
 using PaymentGateway.Dto.Response;
 

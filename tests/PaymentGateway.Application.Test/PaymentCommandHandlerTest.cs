@@ -1,18 +1,16 @@
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Moq;
-using Paymentgateway.Application;
 using Paymentgateway.Application.Commands;
 using PaymentGateway.Domain.Interfaces;
-using PaymentGateway.Dto;
 using PaymentGateway.Dto.Request;
 using PaymentGateway.Dto.Response;
+using PaymentGateway.Infrastructure;
 using Xunit;
 
 namespace PaymentGateway.Application.Test
 {
-    public class PaymentHandlerTest
+    public class PaymentCommandHandlerTest
     {
         [Fact(DisplayName = "Add new payment and returns a successful status")]
         public async Task AddPaymentShouldReturnSuccessfullStatus()
@@ -20,6 +18,9 @@ namespace PaymentGateway.Application.Test
             var repository = new Mock<IPaymentRepository>();
             repository.Setup(m => m.Insert(It.IsAny<Domain.Models.Payment>()))
                 .Returns(Task.CompletedTask);
+
+            var policy = new Mock<IPaymentRepositoryResiliencePolicy>();
+            
             
             var request = new Payment
             {
@@ -36,7 +37,7 @@ namespace PaymentGateway.Application.Test
 
             var command = new PaymentCommand(request);
             
-            var handler = new PaymentCommandHandler(repository.Object);
+            var handler = new PaymentCommandHandler(repository.Object, policy.Object);
             var result = await handler.Handle(command, CancellationToken.None);
             
             Assert.Equal(PaymentStatus.Success, result.Status);
