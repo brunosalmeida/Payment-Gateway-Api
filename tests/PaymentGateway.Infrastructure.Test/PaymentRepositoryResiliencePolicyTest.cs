@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Moq;
 using PaymentGateway.Domain.Interfaces;
 using PaymentGateway.Domain.Models;
+using PaymentGateway.Infrastructure.Resilience;
 using Xunit;
 
 namespace PaymentGateway.Infrastructure.Test

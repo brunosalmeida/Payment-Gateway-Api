@@ -6,6 +6,7 @@ using PaymentGateway.Domain.Interfaces;
 using PaymentGateway.Dto.Request;
 using PaymentGateway.Dto.Response;
 using PaymentGateway.Infrastructure;
+using PaymentGateway.Infrastructure.Resilience;
 using Xunit;
 
 namespace PaymentGateway.Application.Test

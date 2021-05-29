@@ -6,7 +6,7 @@ using PaymentGateway.Domain.Interfaces;
 using PaymentGateway.Domain.Models;
 using Polly;
 
-namespace PaymentGateway.Infrastructure
+namespace PaymentGateway.Infrastructure.Resilience
 {
     public class PaymentRepositoryResiliencePolicy : IPaymentRepositoryResiliencePolicy
     {

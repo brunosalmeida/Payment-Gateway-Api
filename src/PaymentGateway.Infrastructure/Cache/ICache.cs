@@ -2,11 +2,11 @@
 using System.Threading.Tasks;
 using PaymentGateway.Domain.Models;
 
-namespace PaymentGateway.Infrastructure
+namespace PaymentGateway.Infrastructure.Cache
 {
-    public interface IPaymentRepositoryResiliencePolicy
+    public interface ICache
     {
         Task<Payment> Get(Guid id);
-        Task<int> Insert(Payment payment);
+        Task Set(Payment payment);
     }
 }

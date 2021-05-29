@@ -12,6 +12,8 @@ using Paymentgateway.Application.Commands;
 using PaymentGateway.Data.Repositories;
 using PaymentGateway.Domain.Interfaces;
 using PaymentGateway.Infrastructure;
+using PaymentGateway.Infrastructure.Cache;
+using PaymentGateway.Infrastructure.Resilience;
 
 namespace PaymentGateway.Api
 {
@@ -53,6 +55,8 @@ namespace PaymentGateway.Api
             
             services.AddTransient<IPaymentRepository, PaymentRepository>();
             services.AddTransient<IPaymentRepositoryResiliencePolicy, PaymentRepositoryResiliencePolicy>();
+            services.AddTransient<ICache, Cache>();
+                
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

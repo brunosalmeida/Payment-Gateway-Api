@@ -17,12 +17,13 @@ namespace PaymentGateway.Api.Controllers
     {
         private readonly IMediator _mediator;
         private readonly ILogger<PaymentController> _logger;
+
         public PaymentController(ILogger<PaymentController> logger, IMediator mediator)
         {
             _mediator = mediator;
             _logger = logger;
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> AddPayment(Payment payment)
         {
@@ -33,22 +34,22 @@ namespace PaymentGateway.Api.Controllers
             {
                 return CustomResponse(validationResult = validationResult);
             }
-            
+
             var command = new PaymentCommand(payment);
             var result = await _mediator.Send(command);
-            
-            if(result.Status == PaymentStatus.Error) 
+
+            if (result.Status == PaymentStatus.Error)
                 AddProcessingError("Payment not allowed.");
-            
+
             return CustomResponse(result);
         }
 
         [HttpGet("/{id}")]
         public async Task<IActionResult> GetPayment(Guid id)
-        {
+        {   
             var query = new PaymentQuery(id);
             var result = await _mediator.Send(query);
-            
+
             return CustomResponse(result);
         }
     }

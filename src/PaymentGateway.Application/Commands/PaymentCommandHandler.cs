@@ -5,6 +5,7 @@ using PaymentGateway.Domain.Interfaces;
 using PaymentGateway.Dto;
 using PaymentGateway.Dto.Response;
 using PaymentGateway.Infrastructure;
+using PaymentGateway.Infrastructure.Resilience;
 using Domain = PaymentGateway.Domain.Models;
 
 namespace Paymentgateway.Application.Commands
