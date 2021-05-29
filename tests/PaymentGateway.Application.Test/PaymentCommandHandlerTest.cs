@@ -15,12 +15,9 @@ namespace PaymentGateway.Application.Test
         [Fact(DisplayName = "Add new payment and returns a successful status")]
         public async Task AddPaymentShouldReturnSuccessfullStatus()
         {
-            var repository = new Mock<IPaymentRepository>();
+            var repository = new Mock<IPaymentRepositoryResiliencePolicy>();
             repository.Setup(m => m.Insert(It.IsAny<Domain.Models.Payment>()))
-                .Returns(Task.CompletedTask);
-
-            var policy = new Mock<IPaymentRepositoryResiliencePolicy>();
-            
+                .ReturnsAsync(1);
             
             var request = new Payment
             {
@@ -37,7 +34,7 @@ namespace PaymentGateway.Application.Test
 
             var command = new PaymentCommand(request);
             
-            var handler = new PaymentCommandHandler(repository.Object, policy.Object);
+            var handler = new PaymentCommandHandler(repository.Object);
             var result = await handler.Handle(command, CancellationToken.None);
             
             Assert.Equal(PaymentStatus.Success, result.Status);

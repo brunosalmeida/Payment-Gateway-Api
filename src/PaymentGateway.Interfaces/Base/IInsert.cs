@@ -5,6 +5,6 @@ namespace PaymentGateway.Domain.Interfaces.Base
 {
     public interface IInsert
     {
-        Task Insert(Payment payment);
+        Task<int> Insert(Payment payment);
     }
 }

@@ -38,7 +38,7 @@ namespace PaymentGateway.Data.Repositories
             return payment.ToDomain();
         }
 
-        public async Task Insert(Payment payment)
+        public async Task<int> Insert(Payment payment)
         {
             var sql = new StringBuilder();
             sql.Append($"INSERT INTO {_table}");
@@ -63,8 +63,7 @@ namespace PaymentGateway.Data.Repositories
             await using var connection = new SqlConnection(_configuration.GetConnectionString(_database));
             connection.Open();
 
-            await connection.ExecuteAsync(sql.ToString(), parameters);
-            await Task.CompletedTask;
+            return await connection.ExecuteAsync(sql.ToString(), parameters);
         }
     }
 }

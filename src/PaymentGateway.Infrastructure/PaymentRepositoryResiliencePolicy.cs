@@ -21,12 +21,26 @@ namespace PaymentGateway.Infrastructure
         public async Task<Payment> Get(Guid id)
         {
             var policy = Policy<Payment>.Handle<SqlException>()
-                .RetryAsync(_retryCount, onRetry: (exception, retryCount) =>
-                {
-                    Debug.WriteLine($"Try number {retryCount} - Exception: {exception}");
-                });
+                .RetryAsync(_retryCount,
+                    onRetry: (exception, retryCount) =>
+                    {
+                        Debug.WriteLine($"Try number {retryCount} - Exception: {exception}");
+                    });
 
             return await policy.ExecuteAsync(async () => await _repository.Get(id));
+        }
+
+        public async Task<int> Insert(Payment payment)
+        {
+            var policy = Policy<int>.Handle<SqlException>()
+                .RetryAsync(_retryCount,
+                    onRetry: (exception, retryCount) =>
+                    {
+                        Debug.WriteLine($"Try number {retryCount} - Exception: {exception}");
+                    });
+
+            var result = await policy.ExecuteAsync(async () => await _repository.Insert(payment));
+            return result;
         }
     }
 }

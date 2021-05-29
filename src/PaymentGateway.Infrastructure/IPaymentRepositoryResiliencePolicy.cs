@@ -7,5 +7,6 @@ namespace PaymentGateway.Infrastructure
     public interface IPaymentRepositoryResiliencePolicy
     {
         Task<Payment> Get(Guid id);
+        Task<int> Insert(Payment payment);
     }
 }

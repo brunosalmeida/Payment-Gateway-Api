@@ -11,13 +11,10 @@ namespace Paymentgateway.Application.Commands
 {
     public class PaymentCommandHandler : IRequestHandler<PaymentCommand, PaymentResult>
     {
-        private readonly IPaymentRepository _repository;
-        private readonly IPaymentRepositoryResiliencePolicy _paymentRepositoryResiliencePolicy;
-
-        public PaymentCommandHandler(IPaymentRepository repository, IPaymentRepositoryResiliencePolicy paymentRepositoryResiliencePolicy)
+        private readonly IPaymentRepositoryResiliencePolicy _repository;
+        public PaymentCommandHandler(IPaymentRepositoryResiliencePolicy repository)
         {
             _repository = repository;
-            _paymentRepositoryResiliencePolicy = paymentRepositoryResiliencePolicy;
         }
 
         public async Task<PaymentResult> Handle(PaymentCommand command, CancellationToken cancellationToken)
@@ -28,7 +25,7 @@ namespace Paymentgateway.Application.Commands
             var payment = new Domain.Payment(command.Payment.Amount, creditCard);
             payment.SuccessPayment();
 
-            await _repository.Insert(payment);
+            var result = await _repository.Insert(payment);
             
             return await Task.FromResult(new PaymentResult
             {
