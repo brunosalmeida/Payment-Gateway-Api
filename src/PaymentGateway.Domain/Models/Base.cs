@@ -6,9 +6,9 @@ namespace PaymentGateway.Domain.Models
         public Guid Id { get; set; }
         public DateTime CreatedDate { get; set; }
 
-        public Base()
+        public Base(Guid id)
         {
-            Id = Guid.NewGuid();
+            Id = id;
             CreatedDate = DateTime.UtcNow;
         }
 

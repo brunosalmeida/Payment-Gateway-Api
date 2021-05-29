@@ -1,13 +1,15 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Moq;
 using Paymentgateway.Application.Commands;
-using PaymentGateway.Domain.Interfaces;
+using PaymentGateway.Application.Commands;
+using PaymentGateway.Dto.AcquiringBankPayment;
 using PaymentGateway.Dto.Request;
-using PaymentGateway.Dto.Response;
-using PaymentGateway.Infrastructure;
+using PaymentGateway.Infrastructure.AcquiringBank;
 using PaymentGateway.Infrastructure.Resilience;
 using Xunit;
+using PaymentStatus = PaymentGateway.Dto.Response.PaymentStatus;
 
 namespace PaymentGateway.Application.Test
 {
@@ -19,6 +21,17 @@ namespace PaymentGateway.Application.Test
             var repository = new Mock<IPaymentRepositoryResiliencePolicy>();
             repository.Setup(m => m.Insert(It.IsAny<Domain.Models.Payment>()))
                 .ReturnsAsync(1);
+
+            var id = Guid.NewGuid();
+            var acquirinBankPaymentResult = new AcquirinBankPaymentResult
+            {
+                Id = id,
+                Status = Dto.AcquiringBankPayment.PaymentStatus.Success
+            };
+            
+            var acquiringBank = new Mock<IAcquiringBank>();
+            acquiringBank.Setup(m => m.Send(It.IsAny<AcquirinBankPayment>()))
+                .ReturnsAsync(acquirinBankPaymentResult);
             
             var request = new Payment
             {
@@ -35,7 +48,7 @@ namespace PaymentGateway.Application.Test
 
             var command = new PaymentCommand(request);
             
-            var handler = new PaymentCommandHandler(repository.Object);
+            var handler = new PaymentCommandHandler(repository.Object, acquiringBank.Object);
             var result = await handler.Handle(command, CancellationToken.None);
             
             Assert.Equal(PaymentStatus.Success, result.Status);

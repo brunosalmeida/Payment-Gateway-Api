@@ -20,6 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\acquiringbank.sdk\AcquiringBank.SDK\AcquiringBank.SDK.csproj" />
       <ProjectReference Include="..\PaymentGateway.Interfaces\PaymentGateway.Interfaces.csproj" />
     </ItemGroup>
 

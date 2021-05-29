@@ -12,6 +12,7 @@ COPY ["src/PaymentGateway.Domain/PaymentGateway.Domain.csproj", "PaymentGateway.
 COPY ["src/PaymentGateway.Interfaces/PaymentGateway.Interfaces.csproj", "PaymentGateway.Interfaces/"]
 COPY ["src/PaymentGateway.Data/PaymentGateway.Data.csproj", "PaymentGateway.Data/"]
 COPY ["src/PaymentGateway.Dto/PaymentGateway.Dto.csproj", "PaymentGateway.Dto/"]
+COPY ["acquiringbank.sdk/AcquiringBank.SDK/AcquiringBank.SDK.csproj", "AcquiringBank.SDK/"]
 
 RUN dotnet restore "./PaymentGateway.Api/PaymentGateway.Api.csproj"
 COPY src/. /src/ 

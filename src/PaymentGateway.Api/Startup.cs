@@ -11,7 +11,7 @@ using Newtonsoft.Json.Converters;
 using Paymentgateway.Application.Commands;
 using PaymentGateway.Data.Repositories;
 using PaymentGateway.Domain.Interfaces;
-using PaymentGateway.Infrastructure;
+using PaymentGateway.Infrastructure.AcquiringBank;
 using PaymentGateway.Infrastructure.Cache;
 using PaymentGateway.Infrastructure.Resilience;
 
@@ -56,7 +56,7 @@ namespace PaymentGateway.Api
             services.AddTransient<IPaymentRepository, PaymentRepository>();
             services.AddTransient<IPaymentRepositoryResiliencePolicy, PaymentRepositoryResiliencePolicy>();
             services.AddTransient<ICache, Cache>();
-                
+            services.AddTransient<IAcquiringBank, Infrastructure.AcquiringBank.AcquiringBank>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

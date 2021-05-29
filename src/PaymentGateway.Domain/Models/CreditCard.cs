@@ -19,7 +19,7 @@ namespace PaymentGateway.Domain.Models
             CVV = cvv;
         }
         
-        public void Mask()
+        public void ApplyMask()
         {
             var lastDigits = Number.Substring(Number.Length - 4, 4);
             Number = $"{ new String('X', Number.Length - lastDigits.Length)}{lastDigits}";

@@ -9,7 +9,7 @@ namespace PaymentGateway.Domain.Test
         public void CreateSuccessPaymentShouldHaveSuccessStatus()
         {
             var creditCard = new CreditCard("Natalie Buckley", "4088043836019395", 8, 2030, "159");
-            creditCard.Mask();
+            creditCard.ApplyMask();
                 
             Assert.Equal("XXXXXXXXXXXX9395", creditCard.Number);
         }

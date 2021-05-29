@@ -17,8 +17,9 @@ namespace PaymentGateway.Application.Test
         [Fact(DisplayName = "Get payment and returns a successful status")]
         public async Task GetPaymentShouldReturnSuccessfullStatus()
         {
+            var id = Guid.NewGuid();
             var creditCard = new CreditCard("Natalie Buckley", "4088043836019395", 8, 2030, "159");
-            var payment = new Payment(200, creditCard);
+            var payment = new Payment(id, 200, creditCard);
 
             var repository = new Mock<IPaymentRepositoryResiliencePolicy>();
             repository.Setup(e => e.Get(It.IsAny<Guid>())).ReturnsAsync(payment);
@@ -26,7 +27,6 @@ namespace PaymentGateway.Application.Test
             var cache = new Mock<ICache>();
             cache.Setup(e => e.Get(It.IsAny<Guid>())).ReturnsAsync(payment);
             
-            var id = Guid.NewGuid();
             var query = new PaymentQuery(id);
 
             var handler = new PaymentQueryHandler(repository.Object, cache.Object);

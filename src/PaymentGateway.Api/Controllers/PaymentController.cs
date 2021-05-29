@@ -38,9 +38,6 @@ namespace PaymentGateway.Api.Controllers
             var command = new PaymentCommand(payment);
             var result = await _mediator.Send(command);
 
-            if (result.Status == PaymentStatus.Error)
-                AddProcessingError("Payment not allowed.");
-
             return CustomResponse(result);
         }
 
