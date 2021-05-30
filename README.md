@@ -111,3 +111,4 @@ curl -X 'GET' \
 - [ ] Add NGINX as a reverse proxy.
 - [ ] Create Integration Test to cover end to end process.
 - [ ] Enable https.
+- [ ] Improve logging.
