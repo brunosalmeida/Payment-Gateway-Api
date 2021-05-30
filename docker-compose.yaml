@@ -14,7 +14,9 @@ services:
     depends_on:
       - rabbitmq
       - sqlserver
-    
+    networks:
+      - payment_network
+          
   sqlserver:
     container_name: sqlserver
     image: microsoft/mssql-server-linux
