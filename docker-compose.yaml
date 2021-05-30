@@ -1,8 +1,22 @@
 version: '3.4'
 
 services:
+  api:
+    build:
+      context: .
+      dockerfile: src/PaymentGateway.Api/Dockerfile
+    image: "api:latest"
+    container_name: "Payment_Gateway_Api"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    ports:
+      - "5050:80"
+    depends_on:
+      - rabbitmq
+      - sqlserver
+    
   sqlserver:
-    container_name: payment.sqlserver
+    container_name: sqlserver
     image: microsoft/mssql-server-linux
     build: 
       context: ./container/sql
@@ -12,7 +26,7 @@ services:
       - SA_PASSWORD=DefaultPassword1
       - MSSQL_PID=Developer
     ports:
-      - "1433:1433"
+      - "1433:1433"   
     networks:
       - payment_network
       
@@ -28,6 +42,7 @@ services:
 ###############################################################
   rabbitmq:
     image: rabbitmq:management
+    hostname: rabbitmq
     environment:
       - RABBITMQ_DEFAULT_USER=logUser
       - RABBITMQ_DEFAULT_PASS=logPwd

@@ -1,15 +1,11 @@
-﻿using System;
-using System.Text;
-using Microsoft.Extensions.Configuration;
+﻿using System.Text;
 using RabbitMQ.Client;
 
 namespace PaymentGateway.Infrastructure.Dispatch
 {
     public class DispatchService : IDispatchService
     {
-        private readonly IConfiguration _configuration;
         private readonly IModel _model;
-
         public DispatchService(IModel model)
         {
             _model = model;

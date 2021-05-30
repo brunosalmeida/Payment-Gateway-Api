@@ -38,7 +38,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGateway.Infrastructu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGateway.Infrastructure.Test", "tests\PaymentGateway.Infrastructure.Test\PaymentGateway.Infrastructure.Test.csproj", "{C77905F2-7AD8-4B00-9922-FA33A6FCA408}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcquiringBank.SDK", "acquiringbank.sdk\AcquiringBank.SDK\AcquiringBank.SDK.csproj", "{4CA36C3D-81F9-4FF9-889F-C276A02EF4D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcquiringBank.SDK", "src\AcquiringBank.SDK\AcquiringBank.SDK.csproj", "{F9B6AD5E-7B61-4488-8875-7864E717D143}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,7 +63,7 @@ Global
 		{EC139CB9-7D05-45EE-A31B-D31F57D0C1B8} = {E629971E-124B-44D0-A036-9B8059819498}
 		{642A60E8-23E6-4E9B-B525-50F11347E97B} = {C1FEED9A-D9B5-43C5-A5AA-C5391E430899}
 		{C77905F2-7AD8-4B00-9922-FA33A6FCA408} = {C1FEED9A-D9B5-43C5-A5AA-C5391E430899}
-		{4CA36C3D-81F9-4FF9-889F-C276A02EF4D7} = {52AF75A0-65AD-4825-9986-74D2C030D268}
+		{F9B6AD5E-7B61-4488-8875-7864E717D143} = {52AF75A0-65AD-4825-9986-74D2C030D268}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{76997128-3086-4B0C-88EC-E952772A99D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -110,9 +110,9 @@ Global
 		{C77905F2-7AD8-4B00-9922-FA33A6FCA408}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C77905F2-7AD8-4B00-9922-FA33A6FCA408}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C77905F2-7AD8-4B00-9922-FA33A6FCA408}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4CA36C3D-81F9-4FF9-889F-C276A02EF4D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4CA36C3D-81F9-4FF9-889F-C276A02EF4D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4CA36C3D-81F9-4FF9-889F-C276A02EF4D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4CA36C3D-81F9-4FF9-889F-C276A02EF4D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9B6AD5E-7B61-4488-8875-7864E717D143}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9B6AD5E-7B61-4488-8875-7864E717D143}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9B6AD5E-7B61-4488-8875-7864E717D143}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9B6AD5E-7B61-4488-8875-7864E717D143}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

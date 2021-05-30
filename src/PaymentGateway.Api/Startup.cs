@@ -14,18 +14,25 @@ using PaymentGateway.Data.Repositories;
 using PaymentGateway.Domain.Interfaces;
 using PaymentGateway.Infrastructure.AcquiringBank;
 using PaymentGateway.Infrastructure.Cache;
-using PaymentGateway.Infrastructure.Dispatch;
 using PaymentGateway.Infrastructure.Logging;
 using PaymentGateway.Infrastructure.Resilience;
+using Polly;
 using RabbitMQ.Client;
+using RabbitMQ.Client.Exceptions;
 
 namespace PaymentGateway.Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IHostEnvironment hostEnvironment)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(hostEnvironment.ContentRootPath)
+                .AddJsonFile("appsettings.json", true, true)
+                .AddJsonFile($"appsettings.{hostEnvironment.EnvironmentName}.json", true, true)
+                .AddEnvironmentVariables();
+
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -40,6 +47,16 @@ namespace PaymentGateway.Api
                 this.Configuration.Bind("Logging:LogService:RabbitMQ", connectionFactory);
                 return connectionFactory;
             });
+            
+            services.AddSingleton(sp => Policy
+                .Handle<BrokerUnreachableException>()
+                .WaitAndRetry(2, retryAttempt =>
+                {
+                    Console.WriteLine("Trying...");
+                    return TimeSpan.FromSeconds(Math.Pow(2, retryAttempt));
+                })
+                .Execute(() => sp.GetRequiredService<ConnectionFactory>().CreateConnection())
+            );
 
             services.AddSingleton(sp => new LogOptions()
             {

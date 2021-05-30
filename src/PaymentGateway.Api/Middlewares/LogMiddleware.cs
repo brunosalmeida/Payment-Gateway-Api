@@ -14,8 +14,6 @@ namespace PaymentGateway.Api.Middlewares
     {
         private readonly RequestDelegate _next;
         private readonly LogOptions options;
-        private readonly IConfiguration configuration;
-
         public LogMiddleware(RequestDelegate next, LogOptions options)
         {
             _next = next;
