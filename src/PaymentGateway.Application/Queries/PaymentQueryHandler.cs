@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Paymentgateway.Application.Queries;
+using PaymentGateway.Domain.Models;
 using PaymentGateway.Dto.Response;
 using PaymentGateway.Infrastructure.Cache;
 using PaymentGateway.Infrastructure.Resilience;
@@ -29,21 +30,7 @@ namespace PaymentGateway.Application.Queries
         {
             var payment = await _cache.Get(id);
 
-            if (payment is null)
-                return null;
-            
-            return new PaymentQueryResult
-            {
-                Id = payment.Id,
-                Amount = payment.Amount,
-                Name = payment.CreditCard.Name,
-                Number = payment.CreditCard.Number,
-                Month = payment.CreditCard.Month,
-                Year = payment.CreditCard.Year,
-                CVV = payment?.CreditCard.CVV,
-                Status = (PaymentStatus) payment.Status,
-                CreatedDate = payment.CreatedDate
-            };
+            return payment is null ? null : CreateResult(payment);
         }
         
         private async Task<PaymentQueryResult> GetFromDatabase(Guid id)
@@ -54,7 +41,12 @@ namespace PaymentGateway.Application.Queries
                 return null;
 
             await _cache.Set(payment);
-            
+
+            return CreateResult(payment);
+        }
+
+        private PaymentQueryResult CreateResult(Payment payment)
+        {
             return new PaymentQueryResult
             {
                 Id = payment.Id,

@@ -8,12 +8,16 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
+using PaymentGateway.Api.Middlewares;
 using Paymentgateway.Application.Commands;
 using PaymentGateway.Data.Repositories;
 using PaymentGateway.Domain.Interfaces;
 using PaymentGateway.Infrastructure.AcquiringBank;
 using PaymentGateway.Infrastructure.Cache;
+using PaymentGateway.Infrastructure.Dispatch;
+using PaymentGateway.Infrastructure.Logging;
 using PaymentGateway.Infrastructure.Resilience;
+using RabbitMQ.Client;
 
 namespace PaymentGateway.Api
 {
@@ -29,6 +33,20 @@ namespace PaymentGateway.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddEnterpriseLog();
+
+            services.AddSingleton(sp => {
+                var connectionFactory = new ConnectionFactory();
+                this.Configuration.Bind("Logging:LogService:RabbitMQ", connectionFactory);
+                return connectionFactory;
+            });
+
+            services.AddSingleton(sp => new LogOptions()
+            {
+                ProjectKey = GetConfig("Logging:LogService:ProjectKey"),
+                QueueToSend = GetConfig("Logging:LogService:Queue")
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1",
@@ -47,12 +65,12 @@ namespace PaymentGateway.Api
             });
 
             services.AddControllers()
-                .AddNewtonsoftJson((options => 
+                .AddNewtonsoftJson((options =>
                     options.SerializerSettings.Converters.Add(new StringEnumConverter())));
-            
+
             services.AddMediatR(typeof(Startup));
             services.AddMediatR(typeof(PaymentCommand).GetTypeInfo().Assembly);
-            
+
             services.AddTransient<IPaymentRepository, PaymentRepository>();
             services.AddTransient<IPaymentRepositoryResiliencePolicy, PaymentRepositoryResiliencePolicy>();
             services.AddTransient<ICache, Cache>();
@@ -66,16 +84,12 @@ namespace PaymentGateway.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-  
-            app.UseSwagger(c =>
-            {
-                c.SerializeAsV2 = true;
-            });
 
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Payment Gateway API");
-            });
+            app.UseEnterpriseLog();
+
+            app.UseSwagger(c => { c.SerializeAsV2 = true; });
+
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Payment Gateway API"); });
 
             app.UseRouting();
 
@@ -83,5 +97,9 @@ namespace PaymentGateway.Api
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
+
+        public string GetConfig(string key) => Configuration.GetSection(key)?.Value ??
+                                               throw new InvalidOperationException(
+                                                   $"{key} is not found in configuration");
     }
 }
