@@ -41,7 +41,7 @@ namespace PaymentGateway.Api.Controllers
             return CustomResponse(result);
         }
 
-        [HttpGet("/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetPayment(Guid id)
         {   
             var query = new PaymentQuery(id);
