@@ -22,6 +22,9 @@ On Windows, set COMPOSE_CONVERT_WINDOWS_PATHS=1 environment variable to solve is
 
 This api provides 2 endpoints, one to send a payment and another to retrieve a previous payment made.
 
+## URL
+You can access swagger documentation by [this link.](http://localhost:5050)
+
 _Examples:_
 
 ## POST
@@ -107,3 +110,4 @@ curl -X 'GET' \
 - [ ] Add identity give more privacy and security.
 - [ ] Add NGINX as a reverse proxy.
 - [ ] Create Integration Test to cover end to end process.
+- [ ] Enable https.
