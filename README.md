@@ -94,9 +94,10 @@ curl -X 'GET' \
 
 # Features:
 
-- Cache
-- Logging with ELK Stack
-- Runing on Containers
+- [x] Caching
+- [x] Logging with ELK Stack
+- [x] Runing on Containers
+- [x] Continous Integration with github actions. 
 
 <br>
 <br>
@@ -110,5 +111,5 @@ curl -X 'GET' \
 - [ ] Add identity give more privacy and security.
 - [ ] Add NGINX as a reverse proxy.
 - [ ] Create Integration Test to cover end to end process.
-- [ ] Enable https.
+- [ ] Enable HTTPS.
 - [ ] Improve logging.
