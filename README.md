@@ -9,7 +9,7 @@ This is a api based solution for a payment gateway.
 ```
 $ docker compose up or docker-compose up
 ```
-# Thoubleshoot
+# Troubleshoot
 
 On Windows, set COMPOSE_CONVERT_WINDOWS_PATHS=1 environment variable to solve issue reported on
 [issue #1829 at docker/for-win repo:](https://github.com/docker/for-win/issues/1829).
@@ -22,8 +22,11 @@ On Windows, set COMPOSE_CONVERT_WINDOWS_PATHS=1 environment variable to solve is
 
 This api provides 2 endpoints, one to send a payment and another to retrieve a previous payment made.
 
-## URL
-You can access swagger documentation by [this link.](http://localhost:5050)
+## Swagger documentation 
+After run the application you can access api swagger documentation by [this link.](http://localhost:5050/swagger/index.html)
+
+## Kibana
+After tun the application you can check the log by [this link](http://localhost:5601)
 
 _Examples:_
 
