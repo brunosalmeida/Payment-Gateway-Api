@@ -105,11 +105,12 @@ curl -X 'GET' \
 
 # Future improvements
 
-- [ ] Add resilience for Redis Cache Connection.
-- [ ] Add resilience for Sql Connection.
-- [ ] Add more unit tests to cover coner cases.
-- [ ] Add identity give more privacy and security.
-- [ ] Add NGINX as a reverse proxy.
-- [ ] Create Integration Test to cover end to end process.
+- [ ] Api client Sdk for 3th party uses.
+- [ ] Resilience for Redis Cache Connection.
+- [ ] Resilience for Sql Connection.
+- [ ] More unit tests to cover coner cases.
+- [ ] Identity give more privacy and security.
+- [ ] NGINX as a reverse proxy.
+- [ ] Integration Test to cover end to end process.
 - [ ] Enable HTTPS.
 - [ ] Improve logging.
