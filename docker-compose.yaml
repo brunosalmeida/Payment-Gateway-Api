@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: src/PaymentGateway.Api/Dockerfile
-    image: "api:latest"
+    image: "PaymentGatewayApi"
     container_name: "Payment_Gateway_Api"
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
@@ -19,7 +19,7 @@ services:
           
   sqlserver:
     container_name: sqlserver
-    image: microsoft/mssql-server-linux
+    image: sqlserver
     build: 
       context: ./container/sql
       dockerfile: ./Dockerfile

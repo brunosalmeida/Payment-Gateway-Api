@@ -47,7 +47,7 @@ namespace PaymentGateway.Api.Controllers
             var query = new PaymentQuery(id);
             var result = await _mediator.Send(query);
 
-            return CustomResponse(result);
+            return result is null ? NotFound() : CustomResponse(result);
         }
     }
 }
