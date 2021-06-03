@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
-using PaymentGateway.Domain.Models;
+using PaymentGateway.Dto.Response;
 using PaymentGateway.Infrastructure.Cache;
 using Polly;
 using Polly.CircuitBreaker;
@@ -41,14 +41,14 @@ namespace PaymentGateway.Infrastructure.Resilience
             return await Task.FromResult((ConnectionMultiplexer) null);
         }
 
-        public async Task<Payment> Get(Guid id)
+        public async Task<PaymentQueryResult> Get(Guid id)
         {
-            if (_redis is null) return (Payment) null;
+            if (_redis is null) return (PaymentQueryResult) null;
 
             return await _cache.Get(id);
         }
 
-        public async Task Set(Payment payment)
+        public async Task Set(PaymentQueryResult payment)
         {
             if (_redis is not null)
             {

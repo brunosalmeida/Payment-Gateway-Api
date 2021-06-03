@@ -24,8 +24,19 @@ namespace PaymentGateway.Application.Test
             var repository = new Mock<IPaymentRepositoryResiliencePolicy>();
             repository.Setup(e => e.Get(It.IsAny<Guid>())).ReturnsAsync(payment);
 
+            var paymentFromCache = new PaymentQueryResult
+            {
+                Id = id,
+                Amount = 200,
+                Name = "Natalie Buckley",
+                Number = "4088043836019395",
+                Month = 8,
+                Year = 2030,
+                CVV = "159"
+            };
+            
             var cache = new Mock<ICacheResilient>();
-            cache.Setup(e => e.Get(It.IsAny<Guid>())).ReturnsAsync(payment);
+            cache.Setup(e => e.Get(It.IsAny<Guid>())).ReturnsAsync(paymentFromCache);
             
             var query = new PaymentQuery(id);
 
@@ -44,7 +55,7 @@ namespace PaymentGateway.Application.Test
             repository.Setup(e => e.Get(It.IsAny<Guid>())).ReturnsAsync(default(Payment));
 
             var cache = new Mock<ICacheResilient>();
-            cache.Setup(e => e.Get(It.IsAny<Guid>())).ReturnsAsync(default(Payment));
+            cache.Setup(e => e.Get(It.IsAny<Guid>())).ReturnsAsync(default(PaymentQueryResult));
 
             var id = Guid.NewGuid();
             var query = new PaymentQuery(id);

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using PaymentGateway.Domain.Models;
+using PaymentGateway.Dto.Response;
 
 namespace PaymentGateway.Infrastructure.Cache
 {
@@ -14,13 +13,13 @@ namespace PaymentGateway.Infrastructure.Cache
             _redis = redis;
         }
 
-        public async Task<Payment> Get(Guid id)
+        public async Task<PaymentQueryResult> Get(Guid id)
         {
             var value = await _redis.GetDatabase(0).StringGetAsync(id.ToString());
-            return value.IsNullOrEmpty ? null : JsonConvert.DeserializeObject<Payment>(value);
+            return value.IsNullOrEmpty ? null : JsonConvert.DeserializeObject<PaymentQueryResult>(value);
         }
 
-        public async Task Set(Payment payment)
+        public async Task Set(PaymentQueryResult payment)
         {
             var json = JsonConvert.SerializeObject(payment);
             await _redis.GetDatabase(0).StringSetAsync(

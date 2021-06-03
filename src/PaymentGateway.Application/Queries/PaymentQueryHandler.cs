@@ -5,7 +5,6 @@ using MediatR;
 using Paymentgateway.Application.Queries;
 using PaymentGateway.Domain.Models;
 using PaymentGateway.Dto.Response;
-using PaymentGateway.Infrastructure.Cache;
 using PaymentGateway.Infrastructure.Resilience;
 
 namespace PaymentGateway.Application.Queries
@@ -30,7 +29,7 @@ namespace PaymentGateway.Application.Queries
         {
             var payment = await _cache.Get(id);
 
-            return payment is null ? null : CreateResult(payment);
+            return payment;
         }
         
         private async Task<PaymentQueryResult> GetFromDatabase(Guid id)
@@ -40,9 +39,11 @@ namespace PaymentGateway.Application.Queries
             if (payment is null)
                 return null;
             
-            await _cache.Set(payment);
+            var result = CreateResult(payment);
+            
+            await _cache.Set(result);
 
-            return CreateResult(payment);
+            return result;
         }
 
         private PaymentQueryResult CreateResult(Payment payment)
