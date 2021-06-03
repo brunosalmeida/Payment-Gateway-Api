@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: src/PaymentGateway.Api/Dockerfile
-    image: "PaymentGatewayApi"
+    image: "paymentgatewayapi"
     container_name: "Payment_Gateway_Api"
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
