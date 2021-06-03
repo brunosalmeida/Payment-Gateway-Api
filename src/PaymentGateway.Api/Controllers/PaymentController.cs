@@ -38,7 +38,12 @@ namespace PaymentGateway.Api.Controllers
             var command = new PaymentCommand(payment);
             var result = await _mediator.Send(command);
 
-            return CustomResponse(result);
+            if (result is not null) 
+                return CustomResponse(result);
+            
+            AddProcessingError("Something has gone bad. Try again.");
+            return CustomResponse();
+
         }
 
         [HttpGet("{id}")]

@@ -23,17 +23,6 @@ namespace PaymentGateway.Api.Controllers
             }));
         }
 
-        // protected ActionResult CustomResponse(ModelStateDictionary modelState)
-        // {
-        //     var errors = modelState.Values.SelectMany(e => e.Errors);
-        //     foreach (var error in errors)
-        //     {
-        //         AddProcessingError(error.ErrorMessage);
-        //     }
-        //
-        //     return CustomResponse();
-        // }
-
         protected ActionResult CustomResponse(ValidationResult validationResult)
         {
             foreach (var error in validationResult.Errors)

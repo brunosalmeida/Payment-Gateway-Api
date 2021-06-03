@@ -3,10 +3,10 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=07d62956_002Dfb10_002D48bf_002D8baf_002D30036429d525/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="AddNewPaymentShouldReturnOk #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Solution /&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6042bece_002D1e73_002D4b2f_002Daf09_002D6de6a7b097d4/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="AddNewPaymentShouldReturnOk #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6042bece_002D1e73_002D4b2f_002Daf09_002D6de6a7b097d4/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="AddNewPaymentShouldReturnOk #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Solution /&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=bf2961ab_002D37ca_002D490e_002D9679_002D451b3d658053/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="AddNewPaymentShouldReturnOk" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=bf2961ab_002D37ca_002D490e_002D9679_002D451b3d658053/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="AddNewPaymentShouldReturnOk" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::22669200-D74F-4564-9660-B7A709F2D8F8::.NETCoreApp,Version=v3.1::PaymentGateway.Api.Test.UnitTest1.AddNewPaymentShouldReturnOk&lt;/TestId&gt;
   &lt;/TestAncestor&gt;

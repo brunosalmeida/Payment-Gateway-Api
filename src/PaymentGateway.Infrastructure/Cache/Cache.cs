@@ -9,11 +9,9 @@ namespace PaymentGateway.Infrastructure.Cache
     public class Cache : ICache
     {
         private readonly StackExchange.Redis.ConnectionMultiplexer _redis;
-        private const string _database = "Redis:ConnectionString";
-
-        public Cache(IConfiguration configuration)
+        public Cache(StackExchange.Redis.ConnectionMultiplexer redis)
         {
-            _redis = StackExchange.Redis.ConnectionMultiplexer.Connect(configuration.GetSection(_database).Value);
+            _redis = redis;
         }
 
         public async Task<Payment> Get(Guid id)

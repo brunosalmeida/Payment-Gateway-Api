@@ -13,9 +13,9 @@ namespace PaymentGateway.Application.Queries
     public class PaymentQueryHandler : IRequestHandler<PaymentQuery, PaymentQueryResult>
     {
         private readonly IPaymentRepositoryResiliencePolicy _repository;
-        private readonly ICache _cache;
+        private readonly ICacheResilient _cache;
 
-        public PaymentQueryHandler(IPaymentRepositoryResiliencePolicy repository, ICache cache)
+        public PaymentQueryHandler(IPaymentRepositoryResiliencePolicy repository, ICacheResilient cache)
         {
             _repository = repository;
             _cache = cache;

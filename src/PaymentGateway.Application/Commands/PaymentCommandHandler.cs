@@ -43,11 +43,16 @@ namespace PaymentGateway.Application.Commands
             payment.CreditCard.ApplyMask();
 
             var result = await _repository.Insert(payment);
-            return await Task.FromResult(new PaymentResult
-            {
-                Id = payment.Id,
-                Status = payment.Status == Domain.Models.Status.Success ? PaymentStatus.Success : PaymentStatus.Error
-            });
+            
+            return result > 0
+                ? await Task.FromResult(new PaymentResult
+                {
+                    Id = payment.Id,
+                    Status = payment.Status == Domain.Models.Status.Success
+                        ? PaymentStatus.Success
+                        : PaymentStatus.Error
+                })
+                : null;
         }
 
         private async Task<AcquirinBankPaymentResult> SendToAcquiringBank(PaymentCommand command)
@@ -56,6 +61,7 @@ namespace PaymentGateway.Application.Commands
                 command.Payment.CreditCard.Name,
                 command.Payment.CreditCard.Number, command.Payment.CreditCard.Month, command.Payment.CreditCard.Year,
                 command.Payment.CreditCard.CVV));
+            
             return acquirinBankPaymentResult;
         }
     }

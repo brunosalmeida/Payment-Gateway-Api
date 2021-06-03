@@ -52,7 +52,7 @@ namespace PaymentGateway.Api
                 .Handle<BrokerUnreachableException>()
                 .WaitAndRetry(2, retryAttempt =>
                 {
-                    Console.WriteLine("Trying...");
+                    Console.WriteLine("Trying to connect to RabbitMQ...");
                     return TimeSpan.FromSeconds(Math.Pow(2, retryAttempt));
                 })
                 .Execute(() => sp.GetRequiredService<ConnectionFactory>().CreateConnection())
@@ -90,7 +90,8 @@ namespace PaymentGateway.Api
 
             services.AddTransient<IPaymentRepository, PaymentRepository>();
             services.AddTransient<IPaymentRepositoryResiliencePolicy, PaymentRepositoryResiliencePolicy>();
-            services.AddTransient<ICache, Cache>();
+            //services.AddTransient<ICache, Cache>();
+            services.AddTransient<ICacheResilient, CacheResilient>();
             services.AddTransient<IAcquiringBank, Infrastructure.AcquiringBank.AcquiringBank>();
         }
 
