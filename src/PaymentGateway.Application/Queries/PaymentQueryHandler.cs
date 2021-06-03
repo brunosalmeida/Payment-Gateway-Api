@@ -39,7 +39,7 @@ namespace PaymentGateway.Application.Queries
 
             if (payment is null)
                 return null;
-
+            
             await _cache.Set(payment);
 
             return CreateResult(payment);

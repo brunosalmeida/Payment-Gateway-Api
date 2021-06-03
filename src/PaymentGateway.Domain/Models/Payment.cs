@@ -11,6 +11,11 @@ namespace PaymentGateway.Domain.Models
 
         public Status Status { get; private set; }
 
+
+        public Payment() : base()
+        {
+            
+        }
         public Payment(Guid id, decimal amount, CreditCard creditCard)
             : base(id)
         {

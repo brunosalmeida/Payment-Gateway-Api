@@ -1,14 +1,35 @@
 # Payment Gateway Api
 
-This is a api based solution for a payment gateway.
+### This is a api based solution for a payment gateway.
 
-## How to run?
+<br>
+
+# How to run?
+<br>
+
+## Aditional steps to run on Windows.
+
+### Open the following files and  change the end of line sequence from CRLF to LF  
+
+  - container/sql/entrypoint.sh
+  - container/sql/import-data.sh
+
+<br>
+
+This is neeed because the way how windows and linux or unix base system finish a line of text is different.  
 
 <br>
 
 ```
-$ docker compose up or docker-compose up
+$ docker compose up  or docker-compose up
 ```
+
+### If you have previous containers run:
+
+```
+$ docker compose up --build  or docker-compose up --build
+```
+
 # Troubleshoot
 
 On Windows, set COMPOSE_CONVERT_WINDOWS_PATHS=1 environment variable to solve issue reported on
